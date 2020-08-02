@@ -36,17 +36,18 @@ stages:
   jobs:
   - job: Test
     steps:
-    - task: Pester@0
+    - task: Pester@9
       inputs:
-        scriptFolder: "@{Path='$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.ps1'"
+        scriptFolder: "@{Path='$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.ps1'}"
         resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
-        usePSCore: true
+        usePSCore: True
         run32Bit: False
+        PesterVersion: 'LatestVersion'
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: "NUnit"
         testResultsFiles: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
-        failTaskOnFailedTests: true
+        failTaskOnFailedTests: True
 - stage: Deploy
   jobs:
   - job: Deploy
@@ -62,4 +63,4 @@ stages:
           command: 'push'
           packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
           nuGetFeedType: 'internal'
-          publishVstsFeed: 'adbertram'
+          publishVstsFeed: 'test'
