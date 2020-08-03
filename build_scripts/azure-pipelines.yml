@@ -1,5 +1,13 @@
+# specific branch build with batching
 trigger:
-  - master
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+    - .gitignore
 
 name: 'PowerShell Module Project'
 
@@ -18,9 +26,16 @@ stages:
   - job: Build
     steps:
     - task: PowerShell@2
+      displayName: 'Build module'
       inputs:
         filePath: '$(System.DefaultWorkingDirectory)/build_scripts/build.ps1'
         pwsh: true
+    - task: DeleteFiles@1
+      displayName: 'Remove unneeded files'
+      inputs:
+        contents: |
+          .git
+          build_scripts
     - task: NuGetCommand@2
       inputs:
         command: 'pack'
@@ -64,4 +79,5 @@ stages:
           command: 'push'
           packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
           nuGetFeedType: 'internal'
-          publishVstsFeed: 'ajaymehta1'
+          # Default feed has same name as project.
+          publishVstsFeed: '$(System.TeamProject)'
