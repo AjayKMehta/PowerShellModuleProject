@@ -39,7 +39,7 @@ stages:
     steps:
     - task: Pester@10
       inputs:
-        scriptFolder: "@{Path='$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.ps1'}"
+        scriptFolder: '$(System.DefaultWorkingDirectory)'
         resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
         usePSCore: true
         run32Bit: false
