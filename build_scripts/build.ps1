@@ -1,4 +1,12 @@
-$env:BUILDVER = (. minver)
+if (dotnet tool list -g | Select-String 'minver-cli') {
+    Write-Host 'minver-cli already installed.' -ForegroundColor Blue
+} else {
+    Write-Host 'Installing minver-cli' -ForegroundColor Yellow
+    dotnet tool install -g --verbosity detailed minver-cli
+}
+
+$env:BUILDVER = . { minver }
+Write-Host 'Calculated version number is ' $env:BUILDVER -ForegroundColor DarkGreen
 $buildVersion = $env:BUILDVER
 $moduleName = 'PowerShellModuleProject'
 
