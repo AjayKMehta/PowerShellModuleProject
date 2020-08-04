@@ -25,6 +25,19 @@ stages:
   jobs:
   - job: Build
     steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: sdk
+        version: 3.1
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+    - task: DotNetCoreCLI@2
+      displayName: 'Install minver CLI'
+      inputs:
+        command: custom
+        custom: tool
+        arguments: 'install -g --version 2.3.0 minver.cli'
+        includeNuGetOrg: true
     - task: PowerShell@2
       displayName: 'Build module'
       inputs:
