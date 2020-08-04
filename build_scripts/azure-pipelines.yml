@@ -12,10 +12,7 @@ trigger:
 name: 'PowerShell Module Project'
 
 variables:
-  major: 0
-  minor: 0
-  patch: $(Build.BuildID)
-  buildVer: $(major).$(minor).$(Build.BuildID)
+  buildVer: '0.0.$(Build.BuildID)''
 
 pool:
   vmImage: "ubuntu-latest"
@@ -92,5 +89,5 @@ stages:
           command: 'push'
           packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
           nuGetFeedType: 'internal'
-          # Default feed has same name as project.
-          publishVstsFeed: '$(System.TeamProject)'
+          # Default feed has same name as organization.
+          publishVstsFeed: 'ajaymehta1'
