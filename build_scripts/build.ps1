@@ -5,7 +5,7 @@ if (dotnet tool list --tool-path ./tools | Select-String 'minver-cli') {
     dotnet tool install --tool-path ./tools --verbosity detailed minver-cli
 }
 
-$env:BUILDVER = . ./tools/minver.exe
+$env:BUILDVER = minver
 Write-Host 'Calculated version number is ' $env:BUILDVER -ForegroundColor DarkGreen
 $buildVersion = $env:BUILDVER
 $moduleName = 'PowerShellModuleProject'
