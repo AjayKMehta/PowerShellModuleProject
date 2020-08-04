@@ -25,6 +25,13 @@ stages:
   jobs:
   - job: Build
     steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'Install minver CLI'
+      inputs:
+        command: custom
+        custom: tool
+        arguments: 'update -g minver-cli --version 2.3.0'
+	  includeNuGetOrg: true
     - task: PowerShell@2
       displayName: 'Build module'
       inputs:

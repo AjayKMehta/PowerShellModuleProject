@@ -1,3 +1,4 @@
+$env:BUILDVER = (. minver)
 $buildVersion = $env:BUILDVER
 $moduleName = 'PowerShellModuleProject'
 
