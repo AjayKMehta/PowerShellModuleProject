@@ -30,7 +30,7 @@ stages:
       inputs:
         command: custom
         custom: tool
-        arguments: 'install --tool-path .\tools --version 2.3.0 minver-cli'
+        arguments: 'install --tool-path ./tools --version 2.3.0 minver-cli'
         feedsToUse: 'select'
         includeNuGetOrg: true
     - task: PowerShell@2
