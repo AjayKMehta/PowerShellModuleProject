@@ -1,6 +1,8 @@
-$env:BUILDVER = minver
-Write-Host 'Calculated version number is ' $env:BUILDVER -ForegroundColor DarkGreen
-$buildVersion = $env:BUILDVER
+
+$buildVersion = minver
+Write-Host 'Calculated version number is ' $buildVersion -ForegroundColor DarkGreen
+# This is so ugly!
+Write-Host "##vso[task.setvariable variable=buildVer]$buildVersion"
 $moduleName = 'PowerShellModuleProject'
 
 $manifestPath = Join-Path -Path $env:SYSTEM_DEFAULTWORKINGDIRECTORY -ChildPath "$moduleName.psd1"
