@@ -32,7 +32,7 @@ stages:
         custom: tool
         arguments: 'update -g minver-cli --version 2.3.0'
         feedsToUse: 'select'
-	      includeNuGetOrg: true
+        includeNuGetOrg: true
     - task: PowerShell@2
       displayName: 'Build module'
       inputs:
