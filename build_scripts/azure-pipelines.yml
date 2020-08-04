@@ -12,7 +12,7 @@ trigger:
 name: 'PowerShell Module Project'
 
 variables:
-  buildVer: '0.0.$(Build.BuildID)''
+  buildVer: '0.0.$(Build.BuildID)'
 
 pool:
   vmImage: "ubuntu-latest"
@@ -23,11 +23,11 @@ stages:
   - job: Build
     steps:
     - task: UseDotNet@2
-      displayName: 'Use .NET Core sdk'
+      displayName: Use .NET Core sdk
       inputs:
         packageType: sdk
-        version: 3.1.x
-        installationPath: $(Agent.ToolsDirectory)/dotnet
+        version: '3.1.x'
+        installationPath: '$(Agent.ToolsDirectory)/dotnet'
     - task: DotNetCoreCLI@2
       displayName: 'Install minver CLI'
       inputs:
