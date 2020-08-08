@@ -1,6 +1,10 @@
+[![Build Status](https://dev.azure.com/ajaymehta1/PowerShellModuleProject/_apis/build/status/AjayKMehta.PowerShellModuleProject?branchName=master)](https://dev.azure.com/ajaymehta1/PowerShellModuleProject/_build/latest?definitionId=1&branchName=master)
+
 Demo project to demonstrate automatically publishing a NuGet package for a PowerShell project.
 
 For more information, read [this](https://adamtheautomator.com/azure-devops-powershell-module-pipeline)
+
+I extended the pipeline by adding automatic versioning using [MinVer](https://github.com/adamralph/minver).
 
 ## Prerequisites
 
