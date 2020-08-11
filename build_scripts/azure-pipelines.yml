@@ -76,7 +76,7 @@ stages:
       condition: always()
       inputs:
         testRunner: NUnit
-        searchFolder: '$(Common.TestResultsDirectory)'
+        testResultsFiles: "$(Common.TestResultsDirectory)/PowerShellModuleProject.Tests.XML"
         failTaskOnFailedTests: true
     - task: PublishCodeCoverageResults@1
       inputs:
