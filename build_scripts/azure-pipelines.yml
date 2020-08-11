@@ -66,6 +66,8 @@ stages:
       inputs:
         scriptFolder: '$(System.DefaultWorkingDirectory)'
         resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
+        CodeCoverageOutputFile: '$(System.DefaultWorkingDirectory)/CodeCov-Pester.XML'
+        CodeCoverageFolder: '$(System.DefaultWorkingDirectory)'
         usePSCore: true
         run32Bit: false
         PesterVersion: 'LatestVersion'
@@ -74,6 +76,10 @@ stages:
         testResultsFormat: "NUnit"
         testResultsFiles: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
         failTaskOnFailedTests: true
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'JaCoCo'
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/CodeCov-Pester.XML'
 - stage: Deploy
   jobs:
   - job: Deploy
