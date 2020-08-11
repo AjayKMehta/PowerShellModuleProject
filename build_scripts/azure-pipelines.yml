@@ -40,26 +40,6 @@ stages:
       inputs:
         filePath: '$(System.DefaultWorkingDirectory)/build_scripts/build.ps1'
         pwsh: true
-- stage: Test
-  jobs:
-  - job: Test
-    steps:
-    - task: Pester@10
-      inputs:
-        scriptFolder: '$(System.DefaultWorkingDirectory)'
-        resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
-        usePSCore: true
-        run32Bit: false
-        PesterVersion: 'LatestVersion'
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFormat: "NUnit"
-        testResultsFiles: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
-        failTaskOnFailedTests: true
-- stage: Package
-  jobs:
-  - job: Package
-    steps:
     - task: DeleteFiles@1
       displayName: 'Remove unneeded files'
       inputs:
@@ -78,6 +58,22 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'NuGetPackage'
         publishLocation: 'Container'
+- stage: Test
+  jobs:
+  - job: Test
+    steps:
+    - task: Pester@10
+      inputs:
+        scriptFolder: '$(System.DefaultWorkingDirectory)'
+        resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
+        usePSCore: true
+        run32Bit: false
+        PesterVersion: 'LatestVersion'
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: "NUnit"
+        testResultsFiles: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
+        failTaskOnFailedTests: true
 - stage: Deploy
   jobs:
   - job: Deploy
