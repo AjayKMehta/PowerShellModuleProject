@@ -82,7 +82,7 @@ stages:
       inputs:
         codeCoverageTool: 'JaCoCo'
         summaryFileLocation: '$(Common.TestResultsDirectory)/CodeCov-Pester.XML'
-        pathToSources: '$(System.DefaultWorkingDirectory)'
+        pathToSources: '$(System.DefaultWorkingDirectory)/public'
 - stage: Deploy
   jobs:
   - job: Deploy
